@@ -9,13 +9,13 @@ export class UsersService {
   constructor(
     @InjectRepository(UsersEntity)
     private readonly userResponsitory: Repository<UsersEntity>,
-  ) {}
+  ) { }
 
   async createUser(user: IUser): Promise<boolean> {
     try {
       await this.userResponsitory.save(user);
       return true;
-    } catch (error) {}
+    } catch (error) { }
     return false;
   }
 
@@ -27,7 +27,7 @@ export class UsersService {
     try {
       await this.userResponsitory.update(id, user);
       return true;
-    } catch (error) {}
+    } catch (error) { }
     return false;
   }
 
@@ -35,7 +35,7 @@ export class UsersService {
     try {
       await this.userResponsitory.delete(id);
       return true;
-    } catch (error) {}
+    } catch (error) { }
     return false;
   }
 }
