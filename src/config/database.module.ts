@@ -14,6 +14,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
         database: process.env.POSTGRES_DB,
         username: process.env.POSTGRES_USERNAME,
         password: process.env.POSTGRES_PASSWORD,
+        autoLoadEntities: true,
         synchronize: true,
       }),
     }),
