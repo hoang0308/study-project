@@ -24,7 +24,6 @@ export class UsersController {
     return this.userService.createUser(user);
   }
 
-  @Public()
   @HttpCode(HttpStatus.OK)
   @Get(':id')
   getUser(@Param() id: number): Promise<IUser> {
