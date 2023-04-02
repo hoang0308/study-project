@@ -19,7 +19,15 @@ export class UsersService {
     return false;
   }
 
-  fillAllUsers(): Promise<IUser[]> {
+  findUserById(id: number): Promise<IUser> {
+    return this.userResponsitory.findOneBy({ id });
+  }
+
+  findUserByUsername(username: string): Promise<IUser> {
+    return this.userResponsitory.findOneBy({ username });
+  }
+
+  findAllUsers(): Promise<IUser[]> {
     return this.userResponsitory.find();
   }
 

@@ -1,0 +1,16 @@
+{
+  "image": "mcr.microsoft.com/devcontainers/universal:2",
+  "features": {
+    "ghcr.io/devcontainers/features/azure-cli:1": {}
+  },
+  "portsAttributes": {
+    "build": {
+      "dockerfile": "../Dockerfile",
+      "context": ".."
+    },
+    "3000": {
+      "label": "Port api",
+      "visibility": "public"
+    }
+  }
+}

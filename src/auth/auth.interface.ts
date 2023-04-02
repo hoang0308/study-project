@@ -1,5 +1,4 @@
-export interface IUser {
-  id: number;
+export interface IBodyUserRequest {
   username: string;
   password: string;
 }
