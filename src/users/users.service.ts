@@ -11,7 +11,7 @@ export class UsersService {
     private readonly userResponsitory: Repository<UsersEntity>,
   ) {}
 
-  async createUser(user: IUser): Promise<boolean> {
+  async create(user: IUser): Promise<boolean> {
     try {
       await this.userResponsitory.save(user);
       return true;

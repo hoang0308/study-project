@@ -9,9 +9,11 @@ import {
   Post,
   Put,
 } from '@nestjs/common';
-import { Public } from 'src/auth/auth.constants';
+import { Public } from 'src/auth/auth.decorator';
 import { IUser } from './model/users.interface';
 import { UsersService } from './users.service';
+import { ApiResponse } from '@nestjs/swagger';
+import UsersEntity from './model/users.entity';
 
 @Controller('users')
 export class UsersController {
@@ -20,8 +22,13 @@ export class UsersController {
   @Public()
   @HttpCode(HttpStatus.OK)
   @Post()
+  @ApiResponse({
+    status: HttpStatus.CREATED,
+    description: 'Register',
+    type: UsersEntity,
+  })
   create(@Body() user: IUser): Promise<boolean> {
-    return this.userService.createUser(user);
+    return this.userService.create(user);
   }
 
   @HttpCode(HttpStatus.OK)
@@ -42,6 +49,7 @@ export class UsersController {
     return this.userService.updateUser(id, user);
   }
 
+  @Public()
   @HttpCode(HttpStatus.OK)
   @Delete(':id')
   delete(@Param('id') id: number): Promise<boolean> {

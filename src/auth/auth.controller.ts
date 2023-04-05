@@ -11,7 +11,7 @@ import {
 import { AuthGuard } from './auth.guard';
 import { IBodyUserRequest } from './auth.interface';
 import { AuthService } from './auth.service';
-import { Public } from './auth.constants';
+import { Public } from './auth.decorator';
 @Controller()
 export class AuthController {
   constructor(private readonly authService: AuthService) {}
