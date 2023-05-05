@@ -1,8 +1,8 @@
 import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
-import { AuthModule } from 'src/auth/auth.module';
+import { AuthModule } from 'src/components/auth/auth.module';
 import { DatabaseModule } from 'src/config/database.module';
-import { UsersModule } from 'src/users/users.module';
+import { UsersModule } from 'src/components/users/users.module';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 

@@ -1,6 +1,5 @@
 import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
 import { Role } from '../users.enum';
-import { ApiProperty } from '@nestjs/swagger';
 import {
   IsEnum,
   IsNotEmpty,
@@ -9,12 +8,11 @@ import {
   MinLength,
 } from 'class-validator';
 
-@Entity('user')
+@Entity({ name: 'users' })
 class UsersEntity {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @ApiProperty({ example: 'username', minLength: 4, maxLength: 255 })
   @Column({ unique: true })
   @IsString()
   @IsNotEmpty()
@@ -22,7 +20,6 @@ class UsersEntity {
   @MinLength(4)
   username: string;
 
-  @ApiProperty({ example: 'password', minLength: 4, maxLength: 255 })
   @Column()
   @IsString()
   @IsNotEmpty()
@@ -30,7 +27,7 @@ class UsersEntity {
   @MinLength(4)
   password: string;
 
-  @Column()
+  @Column({ type: 'varchar', default: Role.Users })
   @IsNotEmpty()
   @IsEnum(Role)
   role: Role;
