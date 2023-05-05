@@ -9,11 +9,13 @@ import {
   Post,
   Put,
 } from '@nestjs/common';
-import { Public } from 'src/auth/auth.decorator';
+import { Public } from 'src/components/auth/auth.decorator';
 import { IUser } from './model/users.interface';
 import { UsersService } from './users.service';
 import { ApiResponse } from '@nestjs/swagger';
 import UsersEntity from './model/users.entity';
+import { CreateUserDto } from './dto/request/createUser.dto';
+import { UpdateUserDto } from './dto/request/updateUser.dto';
 
 @Controller('users')
 export class UsersController {
@@ -27,7 +29,7 @@ export class UsersController {
     description: 'Register',
     type: UsersEntity,
   })
-  create(@Body() user: IUser): Promise<boolean> {
+  create(@Body() user: CreateUserDto): Promise<boolean> {
     return this.userService.create(user);
   }
 
@@ -45,7 +47,10 @@ export class UsersController {
 
   @HttpCode(HttpStatus.OK)
   @Put(':id')
-  update(@Param('id') id: number, @Body() user: IUser): Promise<boolean> {
+  update(
+    @Param('id') id: number,
+    @Body() user: UpdateUserDto,
+  ): Promise<boolean> {
     return this.userService.updateUser(id, user);
   }
 

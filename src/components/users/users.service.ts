@@ -3,6 +3,8 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import UsersEntity from './model/users.entity';
 import { IUser } from './model/users.interface';
+import { CreateUserDto } from './dto/request/createUser.dto';
+import { UpdateUserDto } from './dto/request/updateUser.dto';
 
 @Injectable()
 export class UsersService {
@@ -11,11 +13,13 @@ export class UsersService {
     private readonly userResponsitory: Repository<UsersEntity>,
   ) {}
 
-  async create(user: IUser): Promise<boolean> {
+  async create(user: CreateUserDto): Promise<boolean> {
     try {
       await this.userResponsitory.save(user);
       return true;
-    } catch (error) {}
+    } catch (error) {
+      console.log(error);
+    }
     return false;
   }
 
@@ -31,7 +35,7 @@ export class UsersService {
     return this.userResponsitory.find();
   }
 
-  async updateUser(id: number, user: IUser): Promise<boolean> {
+  async updateUser(id: number, user: UpdateUserDto): Promise<boolean> {
     try {
       await this.userResponsitory.update(id, user);
       return true;
